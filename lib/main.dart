@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'info.dart';
 import 'api.dart';
+import 'widgets/gradient.dart';
+import 'widgets/loginlabel.dart';
+import 'widgets/loginfield.dart';
+import 'widgets/privacy.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,19 +32,9 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Container(
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 31, 79, 98),
-                Color.fromARGB(255, 37, 112, 118),
-                Color.fromARGB(255, 47, 150, 142)
-              ],
-              begin: Alignment.topCenter,
-              stops: [0.1, 0.7, 1])),
+        body: GradientBackground(
       child: Center(
         child: Column(
           children: [
@@ -50,65 +42,22 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: screenWidth / 12, bottom: screenHeight / 200),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('Usuário',
-                          style: GoogleFonts.lato(
-                              textStyle: TextStyle(
-                                  color: const Color.fromARGB(255, 219, 219, 219),
-                                  fontSize: screenWidth / 25))),
-                    ),
+                  const LoginLabel(text: 'Usuário'),
+                  LoginField(
+                    textController: userController,
+                    obscureText: false,
+                    inputFormatter:
+                        FilteringTextInputFormatter.allow(RegExp(r'.')),
+                    icon: Icons.person,
                   ),
-                  Container(
-                      margin: EdgeInsets.only(
-                          left: screenWidth / 15,
-                          right: screenWidth / 15,
-                          bottom: screenHeight / 33),
-                      child: TextFormField(
-                          controller: userController,
-                          maxLength: 20,
-                          decoration: InputDecoration(
-                              counterText: "",
-                              filled: true,
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(7)),
-                              prefixIcon: const Icon(Icons.person)))),
-                  Container(
-                    margin: EdgeInsets.only(
-                        left: screenWidth / 12, bottom: screenHeight / 200),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('Senha',
-                          style: GoogleFonts.lato(
-                              textStyle: TextStyle(
-                                  color: const Color.fromARGB(255, 219, 219, 219),
-                                  fontSize: screenWidth / 25))),
-                    ),
+                  const LoginLabel(text: 'Senha'),
+                  LoginField(
+                    textController: passwordController,
+                    obscureText: true,
+                    inputFormatter: FilteringTextInputFormatter.allow(
+                        RegExp(r'[a-zA-Z0-9]')),
+                    icon: Icons.lock,
                   ),
-                  Container(
-                      margin: EdgeInsets.only(
-                          left: screenWidth / 15,
-                          right: screenWidth / 15,
-                          bottom: screenHeight / 33),
-                      child: TextFormField(
-                          controller: passwordController,
-                          maxLength: 20,
-                          obscureText: true,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(
-                                RegExp(r'[a-zA-Z0-9]')),
-                          ],
-                          decoration: InputDecoration(
-                              counterText: "",
-                              filled: true,
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(7)),
-                              prefixIcon: const Icon(Icons.lock)))),
                   ElevatedButton(
                     onPressed: () {
                       String userText = userController.text;
@@ -164,20 +113,7 @@ class LoginScreen extends StatelessWidget {
                         ))),
                   ),
                 ])),
-            InkWell(
-                onTap: () async {
-                  Uri url = Uri.parse('https://www.google.com.br/');
-                  if (await canLaunchUrl(url)) {
-                    await launchUrl(url);
-                  }
-                },
-                child: Container(
-                    margin: EdgeInsets.only(bottom: screenHeight / 100),
-                    child: Text('Política de privacidade',
-                        style: GoogleFonts.lato(
-                            textStyle: const TextStyle(
-                                color: Color.fromARGB(255, 219, 219, 219)),
-                            fontSize: screenWidth / 30)))),
+          PrivacyPolicy()
           ],
         ),
       ),

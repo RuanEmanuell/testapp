@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'widgets/gradient.dart';
+import 'widgets/privacy.dart';
 
 import "cardstore.dart";
 
@@ -30,17 +30,7 @@ class InfoScreen extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         body: SingleChildScrollView(
-            child: Container(
-      height: screenHeight,
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 31, 79, 98),
-                Color.fromARGB(255, 37, 112, 118),
-                Color.fromARGB(255, 47, 150, 142)
-              ],
-              begin: Alignment.topCenter,
-              stops: [0.1, 0.7, 1])),
+            child: GradientBackground(
       child: Center(
         child: Column(
           children: [
@@ -71,7 +61,7 @@ class InfoScreen extends StatelessWidget {
                                         left: screenWidth / 30,
                                         right: screenWidth / 30,
                                         bottom: screenHeight / 50),
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Colors.white,
                                       border: Border(
                                           bottom: BorderSide(
@@ -98,8 +88,8 @@ class InfoScreen extends StatelessWidget {
                                                 context: context,
                                                 builder: (context) {
                                                   return AlertDialog(
-                                                      title:
-                                                          Text('Editar texto'),
+                                                      title: const Text(
+                                                          'Editar texto'),
                                                       content: TextFormField(
                                                         initialValue: cardStore
                                                             .noteList[index],
@@ -108,14 +98,15 @@ class InfoScreen extends StatelessWidget {
                                                           cardStore.editNote(
                                                               index, value);
                                                           await cardStore
-                                                              .saveData();
-                                                          Navigator.pop(
-                                                              context);
+                                                              .saveData()
+                                                              .then((value) =>
+                                                                  Navigator.pop(
+                                                                      context));
                                                         },
                                                       ));
                                                 });
                                           },
-                                          child: Icon(Icons.edit),
+                                          child: const Icon(Icons.edit),
                                         ),
                                         InkWell(
                                           onTap: () {
@@ -123,14 +114,14 @@ class InfoScreen extends StatelessWidget {
                                                 context: context,
                                                 builder: (context) {
                                                   return AlertDialog(
-                                                      title: Text(
+                                                      title: const Text(
                                                           'Deseja remover esse item?'),
-                                                      content: Container(
+                                                      content: SizedBox(
                                                         height:
                                                             screenHeight / 5,
                                                         child: Column(
                                                             children: [
-                                                              Container(
+                                                              SizedBox(
                                                                 width:
                                                                     screenWidth /
                                                                         2,
@@ -144,11 +135,10 @@ class InfoScreen extends StatelessWidget {
                                                                           cardStore
                                                                               .removeNote(index);
                                                                           await cardStore
-                                                                              .saveData();
-                                                                          Navigator.pop(
-                                                                              context);
+                                                                              .saveData()
+                                                                              .then((value) => Navigator.pop(context));
                                                                         },
-                                                                        style: ButtonStyle(
+                                                                        style: const ButtonStyle(
                                                                             backgroundColor: MaterialStatePropertyAll(Color.fromARGB(
                                                                                 255,
                                                                                 69,
@@ -163,7 +153,7 @@ class InfoScreen extends StatelessWidget {
                                                                   height:
                                                                       screenHeight /
                                                                           20),
-                                                              Container(
+                                                              SizedBox(
                                                                 width:
                                                                     screenWidth /
                                                                         2,
@@ -177,7 +167,7 @@ class InfoScreen extends StatelessWidget {
                                                                           Navigator.pop(
                                                                               context);
                                                                         },
-                                                                        style: ButtonStyle(
+                                                                        style: const ButtonStyle(
                                                                             backgroundColor: MaterialStatePropertyAll(Color.fromARGB(
                                                                                 255,
                                                                                 255,
@@ -198,7 +188,7 @@ class InfoScreen extends StatelessWidget {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           20)),
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.close,
                                                 color: Colors.white,
                                               )),
@@ -229,7 +219,7 @@ class InfoScreen extends StatelessWidget {
                           },
                           decoration: InputDecoration(
                             hintText: 'Digite seu texto',
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
                             filled: true,
@@ -238,20 +228,7 @@ class InfoScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(7)),
                           ))),
                 ])),
-            InkWell(
-                onTap: () async {
-                  Uri url = Uri.parse('https://www.google.com.br/');
-                  if (await canLaunchUrl(url)) {
-                    await launchUrl(url);
-                  }
-                },
-                child: Container(
-                    margin: EdgeInsets.only(bottom: screenHeight / 100),
-                    child: Text('Política de privacidade',
-                        style: GoogleFonts.lato(
-                            textStyle: const TextStyle(
-                                color: Color.fromARGB(255, 219, 219, 219)),
-                            fontSize: screenWidth / 30)))),
+            PrivacyPolicy()
           ],
         ),
       ),

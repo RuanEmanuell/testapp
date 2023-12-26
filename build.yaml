@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      mobx_codegen|mobservable_generator:
+        options:
+          main_file: lib/main.dart
+          mobx_main_file: lib/main.dart
+      mobx_codegen|mobx_codegen:
+        options:
+          main_file: lib/main.dart
