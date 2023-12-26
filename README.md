@@ -5,7 +5,7 @@ Este projeto é um app feito em Flutter como um teste para a Target Sistemas. El
 ### Como rodar
 
 Você precisará do <a href="https://docs.flutter.dev/get-started/install">Flutter</a>, após inicializar em seu emulador ou dispositivo e 
-<a href="https://docs .flutter.dev/get-started/codelab">iniciar um novo projeto do Flutter</a>, você transferirá os arquivos desse repositório
+<a href="https://docs.flutter.dev/get-started/codelab">iniciar um novo projeto do Flutter</a>, você transferirá os arquivos desse repositório
 para a pasta do seu projeto do Flutter.
 
 ### Aqui estão algumas imagens do projeto rodando:
