@@ -1,12 +1,13 @@
-## TesteApp
+# Veja a versão em Português <a href="README-ptbr.md">aqui</a>
 
-Este projeto é um app feito em Flutter como um teste. Ele contém 2 telas, uma que simula um login, com algumas restrições, por exemplo: o usuário pode fazer login se os 2 campos (de senha e usuário) não estiverem vazios, se a senha tiver mais de 2 caracteres e se não houver espaço como caractere final em nenhum dos campos. Nessa tela também há um botão de politica de privacidade, que envia o usuário para o site do Google. Essa tela ultiliza uma mockAPI para apurar os dados digitados pelo usuário. A outra tela se trata de uma tela de anotações, onde o usuário pode digitar um texto para ele ser adicionado a um card. Essa tela foi feita usando MoBX pra gerenciamento de estado e SharedPreferences para manter os dados do usuário no dispositivo mesmo após fechar o aplicativo.
+## TestApp
 
-### Como rodar
+This project is an app made in Flutter as a test. It contains 2 screens, one that simulates a login, with some restrictions, for example: the user can log in if the 2 fields (password and username) are not empty, if the password has more than 2 characters and if there is no space as a final character in either field. On this screen there is also a privacy policy button, which sends the user to the Google website. This screen uses a mockAPI to verify the data entered by the user. The other screen is an annotation screen, where the user can enter text to be added to a card. This screen was created using MoBX for state management and SharedPreferences to keep user data on the device even after closing the application.
 
-Você precisará do <a href="https://docs.flutter.dev/get-started/install">Flutter</a>, após inicializar em seu emulador ou dispositivo e 
-<a href="https://docs.flutter.dev/get-started/codelab">iniciar um novo projeto do Flutter</a>, você transferirá os arquivos desse repositório
-para a pasta do seu projeto do Flutter.
+### How to Run
+
+You will need <a href="https://docs.flutter.dev/get-started/install">Flutter</a>, after booting up on your emulator or device and <a href="https://docs.flutter.dev/get-started/codelab">starting a new Flutter project</a>, you will transfer the files of this repository folder of your Flutter project. As the project started in 2022, it will be necessary to roll back to an 
+older version of Flutter (v 3.13.9). Some other adjustments may also be necessary due to incompatibility.
 
 ### Aqui estão algumas imagens do projeto rodando:
 ![Screenshot_310](https://github.com/RuanEmanuell/testetargetapp/assets/113607857/5d579153-d83d-4765-aa7d-c030e4a3375a)
