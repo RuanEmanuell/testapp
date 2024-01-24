@@ -9,6 +9,7 @@ This project is an app made in Flutter as a test. It contains 2 screens, one tha
 You will need <a href="https://docs.flutter.dev/get-started/install">Flutter</a>, after booting up on your emulator or device and <a href="https://docs.flutter.dev/get-started/codelab">starting a new Flutter project</a>, you will transfer the files of this repository folder of your Flutter project. As the project started in 2022, it will be necessary to roll back to an 
 older version of Flutter (v 3.13.9). Some other adjustments may also be necessary due to incompatibility.
 
-### Aqui estão algumas imagens do projeto rodando:
+### Here are some images of the project running:
+
 ![Screenshot_310](https://github.com/RuanEmanuell/testetargetapp/assets/113607857/5d579153-d83d-4765-aa7d-c030e4a3375a)
 ![Screenshot_311](https://github.com/RuanEmanuell/testetargetapp/assets/113607857/f945ef99-4807-4c5d-a716-b0b46ca50ad2)
